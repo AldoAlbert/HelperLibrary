@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ToolsLibrary</string>
+    <string name="error_campo_requerido">Campo requerido</string>
+    <string name="error_email_invalido">Email no válido</string>
+    <string name="error_caracteres_minimos">Caracteres mínimos: %1$d</string>
+    <string name="error_solo_letras">Solo se aceptan letras</string>
+    <string name="error_solo_numeros">Solo se aceptan números</string>
+    <string name="error_las_contraseñas_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="error_longitud_contrasena">Debe contener al menos %1$d caracteres</string>
+    <string name="error_longitud_telefono">La longitud del teléfono no es correcta.</string>
+</resources>
