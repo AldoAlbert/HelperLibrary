@@ -8,4 +8,13 @@
     <string name="error_las_contraseñas_no_coinciden">Las contraseñas no coinciden</string>
     <string name="error_longitud_contrasena">Debe contener al menos %1$d caracteres</string>
     <string name="error_longitud_telefono">La longitud del teléfono no es correcta.</string>
+
+    <string name="cargando">Cargando…</string>
+    <string name="error_generico">Ocurrió un error. Inténtalo de nuevo más tarde.</string>
+    <string name="error_intenet">Verifica que tengas conexión a internet.</string>
+    <string name="error_archivos_faltantes">Algunos archivos seleccionados ya no existen en el dispositivo.  Inténtalo de nuevo más tarde.</string>
+    <string name="error_archivos_vacios">Algunos archivos seleccionados no son válidos.  Inténtalo de nuevo más tarde.</string>
+    <string name="error_procesar_tarjeta">Ocurrió un error al procesar la tarjeta.</string>
+
+
 </resources>
