@@ -6,17 +6,18 @@ import android.widget.EditText
 
 import java.util.regex.Pattern
 
-class EditTextValidator(private val c: Context) {
+class EditTextValidator {
 
     private val EMAIL_PATTERN = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
     private val LETTERS_SPACE = "^[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+$"
     private val ONLY_NUMBERS = "^[0-9]+$"
 
     var isResult: Boolean = false
-        private set
     var view: View? = null
+    var c: Context?= null
 
-    init {
+    constructor(c: Context){
+        this.c = c
         this.isResult = true
         this.view = null
     }
@@ -45,34 +46,34 @@ class EditTextValidator(private val c: Context) {
     fun requiredField(editText: EditText) {
         editText.error = null
         if (editText.text.toString().isEmpty()) {
-            setError(editText, c.getString(R.string.error_campo_requerido))
+            c?.getString(R.string.error_campo_requerido)?.let { setError(editText, it) }
         }
     }
 
     fun validateOnlyLetters(editText: EditText) {
         editText.error = null
         if (!onlyLetters(editText.text.toString())) {
-            setError(editText, c.getString(R.string.error_solo_letras))
+            c?.getString(R.string.error_solo_letras)?.let { setError(editText, it) }
         }
     }
 
     fun validateOnlyNumbers(editText: EditText) {
         editText.error = null
         if (!onlyNumbers(editText.text.toString())) {
-            setError(editText, c.getString(R.string.error_solo_numeros))
+            c?.getString(R.string.error_solo_numeros)?.let { setError(editText, it) }
         }
     }
 
     fun validateLength(editText: EditText, minLength: Int) {
         editText.error = null
         if (editText.text.toString().trim { it <= ' ' }.length < minLength) {
-            setError(editText, c.getString(R.string.error_caracteres_minimos, minLength))
+            c?.getString(R.string.error_caracteres_minimos, minLength)?.let { setError(editText, it) }
         }
     }
 
     fun validateEmail(ET_email: EditText) {
         if (!validateEmail(ET_email.text.toString())) {
-            setError(ET_email, c.getString(R.string.error_email_invalido))
+            c?.getString(R.string.error_email_invalido)?.let { setError(ET_email, it) }
         }
     }
 
@@ -80,9 +81,9 @@ class EditTextValidator(private val c: Context) {
         ET_contrasena.error = null
         ET_confirmar_contrasena.error = null
         if (ET_contrasena.length() < min_long) {
-            setError(ET_contrasena, c.getString(R.string.error_longitud_contrasena, min_long))
+            c?.getString(R.string.error_longitud_contrasena, min_long)?.let { setError(ET_contrasena, it) }
         } else if (ET_contrasena.text.toString() != ET_confirmar_contrasena.text.toString()) {
-            setError(ET_confirmar_contrasena, c.getString(R.string.error_las_contraseñas_no_coinciden))
+            c?.getString(R.string.error_las_contraseñas_no_coinciden)?.let { setError(ET_confirmar_contrasena, it) }
         }
 
     }
@@ -90,9 +91,9 @@ class EditTextValidator(private val c: Context) {
     fun validateTelephone(editText: EditText, longitude: Int) {
         editText.error = null
         if (!(editText.text.toString().length == longitude)) {
-            setError(editText, c.getString(R.string.error_longitud_telefono))
+            c?.getString(R.string.error_longitud_telefono)?.let { setError(editText, it) }
         } else if (!onlyNumbers(editText.text.toString())) {
-            setError(editText, c.getString(R.string.error_solo_numeros))
+            c?.getString(R.string.error_solo_numeros)?.let { setError(editText, it) }
         }
 
     }

@@ -7,10 +7,18 @@ import android.widget.ProgressBar
 
 import com.google.android.material.snackbar.Snackbar
 
-class SnackBarBuilder(private val c: Context, private val parent: View) {
+class SnackBarBuilder {
+
+    private var c: Context? = null
+    private var parent: View? = null
+
+    constructor(c: Context, parent: View){
+        this.c = c
+        this.parent = parent
+    }
 
     private fun makeSnackBar(message: String) {
-        Snackbar.make(parent, message, Snackbar.LENGTH_SHORT).show()
+        parent?.let { Snackbar.make(it, message, Snackbar.LENGTH_SHORT).show() }
     }
 
     fun buildSnackBar(message: String) {
@@ -18,31 +26,31 @@ class SnackBarBuilder(private val c: Context, private val parent: View) {
     }
 
     fun buildErrorSnackBar() {
-        makeSnackBar(c.getString(R.string.error_generico))
+        c?.getString(R.string.error_generico)?.let { makeSnackBar(it) }
     }
 
     fun buildNetworkErrorSnackBar() {
-        makeSnackBar(c.getString(R.string.error_intenet))
+        c?.getString(R.string.error_intenet)?.let { makeSnackBar(it) }
     }
 
     fun buildCardErrorSnackBar() {
-        makeSnackBar(c.getString(R.string.error_procesar_tarjeta))
+        c?.getString(R.string.error_procesar_tarjeta)?.let { makeSnackBar(it) }
     }
 
     fun buildInvalidFilesSnackBar() {
-        makeSnackBar(c.getString(R.string.error_archivos_vacios))
+        c?.getString(R.string.error_archivos_vacios)?.let { makeSnackBar(it) }
     }
 
     fun buildUnavalibleFilesSnackBar() {
-        makeSnackBar(c.getString(R.string.error_archivos_faltantes))
+        c?.getString(R.string.error_archivos_faltantes)?.let { makeSnackBar(it) }
     }
 
     fun buildLoadingSnackBar() {
-        val bar = Snackbar.make(parent, c.getString(R.string.cargando), Snackbar.LENGTH_INDEFINITE)
-        val contentLay = bar.view.findViewById<View>(com.google.android.material.R.id.snackbar_text).parent as ViewGroup
+        val bar = parent?.let { c?.getString(R.string.cargando)?.let { it1 -> Snackbar.make(it, it1, Snackbar.LENGTH_INDEFINITE) } }
+        val contentLay = bar?.view?.findViewById<View>(com.google.android.material.R.id.snackbar_text)?.parent as ViewGroup
         val item = ProgressBar(c)
         contentLay.addView(item, 0)
-        bar.show()
+        bar?.show()
     }
 
 }
