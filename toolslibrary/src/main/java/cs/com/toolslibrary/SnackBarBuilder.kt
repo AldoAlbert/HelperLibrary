@@ -48,7 +48,7 @@ class SnackBarBuilder {
     /**
      * @return Snackbar with progressBar inside
      */
-    fun buildLoadingSnackBar(): Snackbar? {
+    fun buildLoadingSnackBar(): Snackbar {
         val bar = Snackbar.make(parent, c.getString(R.string.cargando), Snackbar.LENGTH_INDEFINITE)
         val contentLay = bar.view.findViewById<View>(com.google.android.material.R.id.snackbar_text)?.parent as ViewGroup
         val item = ProgressBar(c)
